@@ -1,0 +1,878 @@
+<!doctype html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>GraphQL - An Introduction</title>
+        <meta name="description" content="WebSlides is about good karma. Create your own HTML presentation instantly. Just the esentials.">
+
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+        <!-- URL CANONICAL -->
+        <!-- <link rel="canonical" href="http://your-url.com/permalink"> -->
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,700,700i%7CMaitree:200,300,400,600,700&amp;subset=latin-ext" rel="stylesheet">
+
+        <!-- CSS Base -->
+        <link rel="stylesheet" type='text/css' media='all' href="static/css/webslides.css">
+        <link rel="stylesheet" type='text/css' media='all' href="static/css/graphql.css">
+        <link rel="stylesheet" type='text/css' media='all' href="static/css/tomorrow.css">
+
+        <!-- Optional - CSS SVG Icons (Font Awesome) -->
+        <link rel="stylesheet" type="text/css" media="all" href="static/css/svg-icons.css">
+
+        <!-- SOCIAL CARDS (ADD YOUR INFO) -->
+
+        <!-- FACEBOOK -->
+        <meta property="og:url" content="http://pebra.net"> <!-- EDIT -->
+        <meta property="og:type" content="article">
+        <meta property="og:title" content="Intro to GraphQL" />
+        <meta property="og:description" content="Basic introduction to GraphQL and it's potential applications"> <!-- EDIT -->
+        <meta property="og:updated_time" content="2017-08-29T19:00:50"> <!-- EDIT -->
+
+        <!-- TWITTER -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@pebrabb"> <!-- EDIT -->
+        <meta name="twitter:creator" content="@pebrabb"> <!-- EDIT -->
+        <meta name="twitter:title" content="Intro to GraphQL"> <!-- EDIT -->
+        <meta name="twitter:description" content="What it GraphQL and should you use it?"> <!-- EDIT -->
+        <meta name="twitter:image" content="https://webslides.tv/static/images/share-karma.jpg"> <!-- EDIT -->
+
+        <!-- FAVICONS -->
+        <link rel="shortcut icon" sizes="16x16" href="static/images/favicons/favicon.png">
+        <link rel="shortcut icon" sizes="32x32" href="static/images/favicons/favicon-32.png">
+        <link rel="apple-touch-icon icon" sizes="76x76" href="static/images/favicons/favicon-76.png">
+        <link rel="apple-touch-icon icon" sizes="120x120" href="static/images/favicons/favicon-120.png">
+        <link rel="apple-touch-icon icon" sizes="152x152" href="static/images/favicons/favicon-152.png">
+        <link rel="apple-touch-icon icon" sizes="180x180" href="static/images/favicons/favicon-180.png">
+        <link rel="apple-touch-icon icon" sizes="192x192" href="static/images/favicons/favicon-192.png">
+
+        <!-- Android -->
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="theme-color" content="#d2f5f0">
+    </head>
+    <body>
+        <main role="main">
+            <article id="webslides" class="horizontal">
+
+                <!-- Quick Guide
+                   - Each parent <section> in the <article id="webslides"> element is an individual slide.
+                   - Vertical sliding = <article id="webslides" class="vertical">
+                   - <div class="wrap"> = container 90% / <div class="wrap size-50"> = 45%;
+                   -->
+
+                <section>
+                    <!--.wrap = container (width: 90%) -->
+                    <div class="wrap aligncenter">
+                        <h1 class="text-landing">GraphQL</h1>
+                        <h3 class="text-landing">An Introduction</h3>
+                        <p class="text-intro">
+                            <!-- <strong><a href="http://webslides.tv/">WebSlides</a></strong> &mdash; HTML presentations made easy. <br>
+                                 Hypertext and beauty as narrative elements. -->
+                        </p>
+                        <nav>
+                            <ul>
+                                <li><a href="http://graphql.org">http://graphql.org</a></li>
+                                <li><a href="https://facebook.github.io/graphql/">RFC</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <!-- .end .wrap -->
+                </section>
+                <!-- <section class="bg-black aligncenter"> -->
+                <!--   <\!-- Overlay/Opacity: [class*="bg-"] > .background.dark or .light -\-> -->
+                <!--   <span class="background" style="background-image:url('https://source.unsplash.com/OkAAx4mI2Hc/')"></span> -->
+                <!--   <\!-- background with a frame frame -\-> -->
+                <!--   <span class="background frame"></span> -->
+                <!--   <\!--.wrap = container (width: 90%) -\-> -->
+                <!--   <div class="wrap fadeInUp"> -->
+                <!--     <h1> -->
+                <!--       Everyone -->
+                <!--       <svg class="fa-heart-o"> -->
+                <!--         <use xlink:href="#fa-heart-o"></use> -->
+                <!--       </svg> -->
+                <!--       Stories -->
+                <!--     </h1> -->
+                <!--   </div> -->
+                <!--   <\!-- .end .wrap -\-> -->
+                <!-- </section> -->
+                <section>
+                    <!--.wrap = container (width: 90%) -->
+                    <div class="wrap">
+                        <div class="grid vertical-align">
+                            <div class="column">
+                                <img class="" src="static/images/nic-cage-in-con-air.jpg" alt="Avatar">
+                            </div>
+                            <div class="column">
+                                <h3><strong>Hello.</strong></h3>
+                                <p class="text-intro">Peter from Hamburg</p>
+                                <p class="text-intro"> Working for XING on Scala and Ruby projects. Elixir in spare time.
+                                    Occasionally tweeting as <a href='https://twitter.com/pebrabb'>@pebrabb</a>.</p>
+                            </div>
+                            <!-- .end .column -->
+                            <!-- .end .column -->
+                        </div>
+                        <!-- .end .grid -->
+                    </div>
+                    <!-- .end .wrap -->
+                </section>
+                <section>
+                    <div class="content-center">
+                        <h2>Some Facts</h2>
+                        <div class="text-intro alignleft">
+                            <div class="flexbock">
+                                <ul style="text-align:left;">
+                                    <li>Development started in 2012</li>
+                                    <li>The <a href="https://facebook.github.io/graphql/">RFC is still ongoing</a></li>
+                                    <li>Used by Github, Yelp, Facebook, Shopify <a href="http://graphql.org/users/">and many more</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="content-center">
+                        <h2>Overall Idea</h2>
+                        <div class="text-intro alignleft">
+                            <div class="flexbock">
+                                <ul style="text-align:left;">
+                                    <li>The server defines a Schema with all possible fields a client can query and mutate</li>
+                                    <li>The client defines Queries and Mutations to interact with the backend against the Schema</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="bg-gradient-r">
+                    <div class="aligncenter">
+                        <h1>Types & the Schema</h1>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="aligncenter">Scalar Types</h3>
+                    <div class="wrap">
+                        <div class="grid vertical-align">
+                            <div class="column">
+                                <div class="">
+                                    <ul class="flexblock specs">
+                                        <li>
+                                            <div><h2>String</h2></div>
+                                            A UTF‐8 character sequence.
+                                        </li>
+                                        <li>
+                                            <div><h2>Int</h2></div>
+                                            A signed 32‐bit integer.
+                                        </li>
+                                        <li>
+                                            <div><h2>Float</h2></div>
+                                            A signed double-precision floating-point value.
+                                        </li>
+                                        <li>
+                                            <div><h2>Boolean</h2></div>
+                                            true or false.
+                                        </li>
+                                        <li>
+                                            <div><h2>ID</h2></div>
+                                            The ID scalar type represents a unique identifier, often used to refetch an object or as the key for a cache. The ID type is serialized in the same way as a String; however, defining it as an ID signifies that it is not intended to be human‐readable.
+                                        </li>
+                                    </ul>
+                                    <a href="http://graphql.org/learn/schema/">Source</a>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <pre>
+                                    <code>
+type User {
+   name: String
+   age: Int
+   weight: Float
+   isAdmin: Boolean
+   id: ID
+}
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="wrap">
+                        <h3 class="aligncenter">Object Types</h3>
+                        <div class="grid vertical-align">
+                            <div class="column alignleft">
+                                <div class="text-intro">
+                                    <p>Object Types can reference other Object Types</p>
+                                    <p>Fields marked with a <tt>!</tt> are mandatory/required (non-nullable)</p>
+                                    <p><tt>users: [User!]!</tt> - an Array of users which contains no nulls, neither the array itself can be null nor the contents of the array</p>
+                                    <p>In contrast <tt>users: [User]!</tt> - an Array of users which contains 0 or more Users as well as null</p>
+                                    <p><tt>users: [User]</tt> - the whole field might be null</p>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <pre>
+                                    <code>
+type User {
+  name: String
+  email: String
+  age: Int
+}
+
+type Tweet {
+  text: String!
+  author: User!
+}
+
+type TweetList {
+  users: [User!]!
+}
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="wrap">
+                        <h3 class="aligncenter">Enums :yay!:</h3>
+                        <div class="grid vertical-align">
+                            <div class="column alignleft">
+                                <div class="text-intro">
+                                    <p>Enumeration types are a special kind of scalar that is restricted to a particular set of allowed values.</p>
+                                    <p>This can give you some guarantees about the returned values.</p>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <pre>
+                                    <code>
+enum UserType {
+  ADMIN
+  MODERATOR
+  MEMBER
+}
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="wrap">
+                        <h3 class="aligncenter">Interfaces</h3>
+                        <div class="grid vertical-align">
+                            <div class="column alignleft">
+                                <div class="text-intro">
+                                    <p> An Interface is an abstract type that includes a certain set of fields that a type must include to implement the interface.</p>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <pre>
+                                    <code>
+interface Human {
+  age: Int!
+  height: Int!
+}
+
+type SuperHuman implements Human {
+  age: Int!
+  height: Int!
+  superPowers: [String!]!
+}
+
+type Villain implements Human {
+  age: Int!
+  height: Int!
+  childHoodTraumas: [String!]!
+}
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="bg-gradient-r">
+                    <div class="aligncenter">
+                        <h1>Queries</h1>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="aligncenter">Queries</h3>
+                    <div class="content-center">
+                        <div class="text-intro alignleft">
+                            <div class="flexbock">
+                                <ul style="text-align:left;">
+                                    <li>The result of a query will have the same shape as the query itself</li>
+                                    <li>Queries can have comments, starting with <em>"#"</em></li>
+                                    <li>You can pass parameters to queries</li>
+                                    <li>Each field and nested object can receive parameters</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="aligncenter">Queries</h3>
+                    <div class="wrap">
+                        <div class="grid vertical-align">
+                            <div class="column">
+                                <pre>
+                                    <code>
+query {
+  allTweets {
+    author {
+      name
+      email
+    }
+    text
+  }
+}
+                                    </code>
+                                </pre>
+                            </div>
+                            <div class="column">
+                                <pre>
+                                    <code>
+{
+  "allTweets": [
+    {
+      "author": {
+        "name": "Most interesting man in the world",
+        "email": "s3ndnud3s@example.org"
+      },
+      "text": "I do not always..."
+    },
+    {
+      "author": {
+        "name": "James Bood",
+        "email": "007@example.org"
+      },
+      "text": "I love it if a plan comes together"
+    }
+  ]
+}
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="aligncenter">Aliases</h3>
+                    <div class="wrap">
+                        <div class="grid vertical-align">
+                            <div class="column">
+                                <pre>
+                                    <code>
+query {
+    <span class="highline">tweets: allTweets {</span>
+    author {
+      name
+      email
+    }
+    text
+  }
+}
+                                    </code>
+                                </pre>
+                            </div>
+                            <div class="column">
+                                <pre>
+                                    <code>
+{
+    <span class="highline">"tweets": [</span>
+    {
+      "author": {
+        "name": "Most interesting man in the world",
+        "email": "s3ndnud3s@example.org"
+      },
+      "text": "I do not always..."
+    }
+  ]
+}
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="aligncenter">Queries with arguments/parameters</h3>
+                    <div class="wrap">
+                        <div class="grid vertical-align">
+                            <div class="column">
+                                <pre>
+                                    <code>
+query {
+  <span class="highline">tweet(id: 23531) {</span>
+    id
+    author {
+      name
+      email
+    }
+    text
+  }
+}
+                                    </code>
+                                </pre>
+                            </div>
+                            <div class="column">
+                                <pre>
+                                    <code>
+{
+  "tweet": {
+    "id": 23531,
+    "author": {
+      "name": "Most interesting man in the world",
+      "email": "soexciting@example.org"
+    },
+    "text": "I do not always..."
+  }
+}
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h3 class="aligncenter">Conversions and little helper functions can stay inside the backend</h3>
+                    <div class="wrap">
+                        <div class="grid vertical-align">
+                            <div class="column">
+                                <pre>
+                                    <code>
+query {
+  customer(id: 23531) {
+    firstname
+    lastname
+    <span class="highline">preferredShoeSize(unit: "UK")</span>
+  }
+}
+                                    </code>
+                                </pre>
+                                <pre>
+                                    <code>
+query {
+  customer(id: 23531) {
+    firstname
+    lastname
+    <span class="highline">preferredShoeSize(unit: "DE")</span>
+  }
+}
+                                    </code>
+                                </pre>
+                            </div>
+                            <div class="column">
+                                <pre>
+                                    <code>
+{
+  "customer": {
+    "firstname": "John",
+    "lastname": "Doe",
+    <span class="highline">"preferredShoeSize": 10.5</span>
+  }
+}
+                                    </code>
+                                </pre>
+                                <pre>
+                                    <code>
+{
+  "customer": {
+    "firstname": "John",
+    "lastname": "Doe",
+    <span class="highline">"preferredShoeSize": 44.5</span>
+  }
+}
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="bg-gradient-r">
+                    <div class="aligncenter">
+                        <h1>Fragments</h1>
+                    </div>
+                </section>
+                <section>
+                    <div class="aligncenter">
+                        <h3>Fragments can help you to dry out your queries</h3>
+                    </div>
+                    <div class="wrap">
+                        <div class="grid vertical-align">
+                            <div class="column">
+                                <pre>
+                                    <code>
+query {
+  user(id: 12) {
+    ...basicInfo
+  }
+}
+
+fragment basicInfo on User {
+   email
+   name
+   age
+}
+                                    </code>
+                                </pre>
+                            </div>
+                            <div class="column">
+                                <pre>
+                                    <code>
+{
+  "user": {
+    "email": "foo@example.org",
+    "name": "JDoe",
+    "age": "42"
+  }
+}
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="bg-gradient-r">
+                    <div class="aligncenter">
+                        <h1>Variables</h1>
+                    </div>
+                </section>
+                <section>
+                    <div class="aligncenter">
+                        <h3>Never do string interpolation from user supplied values, use Query Variables</h3>
+                    </div>
+                    <div class="wrap">
+                        <div class="grid vertical-align">
+                            <div class="column">
+                                <pre>
+                                    <code>
+query User($userID: Int) {
+  user(id: $userID) {
+    id
+    email
+    name
+    age
+  }
+}
+                                    </code>
+                                </pre>
+
+                                <pre>
+                                    <code>
+# query variables
+{
+  "userID": 1
+}
+                                    </code>
+                                </pre>
+                            </div>
+                            <div class="column">
+                                <pre>
+                                    <code>
+{
+  "user": {
+    "id": 1,
+    "email": "foo@example.org",
+    "name": "JDoe",
+    "age": "42"
+  }
+}
+                                    </code>
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="bg-gradient-r">
+                    <div class="aligncenter">
+                        <h1>Directives</h1>
+                    </div>
+                </section>
+                <section>
+                    <div class="wrap">
+                        <div class="grid vertical-align">
+                            <div class="column">
+                                <pre>
+                                    <code>
+query User($userID: Int) {
+  user(id: $userID) {
+    id
+    email
+    name
+    followers @include(if: $withFollowers) {
+      name
+    }
+    tweets @skip(if: $shortSummary) {
+      text
+    }
+  }
+}
+                                    </code>
+                                </pre>
+                                <pre>
+                                    <code>
+{
+  "withFollowers": true,
+  "shortSummary": false,
+  "userId": 1
+}
+                                    </code>
+                                </pre>
+                            </div>
+                            <div class="column">
+                                <div class="text-intro">
+                                    <p>
+                                        Directives enable you to conditionally include or exclude payload.
+                                        The spec defines <tt>@include(if: ...)</tt> and <tt>@skip(if: ...)</tt>.<br>
+                                        Servers can implement and define custom directives.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="bg-gradient-r">
+                    <div class="aligncenter">
+                        <h1>Mutations</h1>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="wrap">
+                        <h2 class="aligncenter">Mutation Types</h2>
+                        <div class="grid vertical-align">
+                            <div class="column">
+                                <div class="text-intro">
+                                    <p>
+                                        At some point in time, you want to change state on the server.
+                                        Mutation Types enable you to do so.
+                                        While query fields are executed in parallel, mutation fields run in series, one after the other.
+                                    </p>
+                                </div>
+                                </div>
+                                <div class="column">
+                                    <pre>
+                                        <code>
+mutation ($author: User!, $text: String!) {
+  createTweet(author: $author, text: $text) {
+    author {
+      name
+    }
+    text
+  }
+}
+                                        </code>
+                                    </pre>
+                                    <pre class="dense">
+                                        <code>
+# input
+{
+  "author": {
+     id: 12
+  },
+  "text": "Greeeeaaaatttt"
+}
+                                        </code>
+                                    </pre>
+                                </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="wrap">
+                        <h2 class="aligncenter">Input Types</h2>
+                        <div class="grid vertical-align">
+                            <div class="column">
+                                <div class="text-intro">
+                                    <p>
+                                        Like Type Objects, but specifically to be passed as input variables,
+                                        e.g. for mutations and creating whole new objects.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <pre class="dense">
+                                    <code>
+input TweetInput {
+  author: User!
+  text: String!
+}
+
+mutation ($tweet: TweetInput!) {
+  createTweet(tweet: $tweet) {
+    author {
+      name
+    }
+    text
+  }
+}
+                                    </code>
+                        </pre>
+                                    <pre class="dense">
+                                        <code>
+# input
+{
+  "tweet": {
+     "author": {
+        id: 12
+     },
+     "text": "Greeeeaaaatttt"
+  }
+}
+                                        </code>
+                                    </pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="bg-gradient-r">
+                    <div class="aligncenter">
+                        <h1>Server</h1>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="wrap">
+                        <h2 class="aligncenter">Server Structure</h2>
+                        <div class="aligncenter">
+                            <img src="static/images/server.png" />
+                        </div>
+                        <div class="aligncenter">
+                            <p><a href="https://dev-blog.apollodata.com/how-to-build-graphql-servers-87587591ded5">Source</a></p>
+                        </div>
+                    </div>
+                </section>
+                <section class="bg-gradient-r">
+                    <div class="aligncenter">
+                        <h1>Conclusion</h1>
+                    </div>
+                </section>
+                <section>
+                    <h2 class="aligncenter">Advantages - when to use</h2>
+                    <div class="wrap">
+                        <div class="">
+                            <ul class="flexblock specs">
+                                <li>
+                                    <div><h2>Get exaclty what you ask for</h2></div>
+                                    Highly specific queries, only receive what you requested.
+                                </li>
+                                <li>
+                                    <div><h2>If bandwidth is expensive (mobile apps)</h2></div>
+                                    Save data transfer and avoid multiple round trips to the backend, due to point 1.
+                                </li>
+                                <li>
+                                    <div><h2>Proxy several (REST) APIs behind a single interface</h2></div>
+                                    Integrate several services into one API.
+                                </li>
+                                <li>
+                                    <div><h2>If you are serving more than one end device (web, iOS, Android)</h2></div>
+                                </li>
+                                <li>
+                                    <div><h2>If you are working on a greenfield project</h2></div>
+                                    Because why not? =)
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h2 class="aligncenter">When you might want to avoid it</h2>
+                    <div class="wrap">
+                        <div class="">
+                            <ul class="flexblock specs">
+                                <li>
+                                    <div><h2>If you have full control over your backend</h2></div>
+                                    If it is quite simple and/or a monolith.
+                                </li>
+                                <li>
+                                    <div><h2>If you are serving a public API</h2></div>
+                                    REST is still the de facto standard here.
+                                </li>
+                                <li>
+                                    <div><h2>If you can live with blown (due to multi purpose) API responses</h2></div>
+                                    Think of internal APIs that are only available within your datacenter or office.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    </section>
+                    <section>
+                        <h2 class="aligncenter">Language support</h2>
+                        <div class="wrap">
+                            <div class="">
+                                <ul class="flexblock specs aligncenter">
+                                    <li>
+                                        <div><h2>Javascript</h2></div>
+                                        <a href="https://github.com/graphql/graphql-js/">GraphQL.js</a>
+                                    </li>
+                                    <li>
+                                        <div><h2>PHP</h2></div>
+                                        <a href="https://github.com/webonyx/graphql-php">GraphQL-php</a>
+                                        </li>
+                                        <li>
+                                            <div><h2>Ruby</h2></div>
+                                            <a href="https://github.com/rmosolgo/graphql-ruby">graphql-ruby</a>
+                                        </li>
+                                        <li>
+                                            <div><h2>Scala</h2></div>
+                                            <a href="http://sangria-graphql.org/">Sangria</a>
+                                        </li>
+                                        <li>
+                                            <div><h2>Java</h2></div>
+                                            <a href="https://github.com/graphql-java/graphql-java">GraphQL-java</a>
+                                        </li>
+                                        <li>
+                                            <div><h2>And many more...</h2></div>
+                                            Go, Clojure, Erlang, <a href="http://graphene-python.org/">Python</a>
+                                        </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <h2 class="aligncenter">For further reading...</h2>
+                        <div class="wrap">
+                            <div class="">
+                                <ul class="flexblock specs aligncenter">
+                                    <li>
+                                        <a href="http://graphql.org/learn/">Learn GraphQL</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://github.com/chentsulin/awesome-graphql">Huge collection of helpful links about GraphQL</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://graphql.org/learn/best-practices/">Best practices</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                <section class="bg-black aligncenter">
+                    <span class="background" style="background-image:url('static/images/beer.jpg')"></span>
+                    <div class="wrap">
+                    <div class="aligncenter bg-trans-dark">
+                        <h1>Discussions & Beer/Mate</h1>
+                    </div>
+                    </div>
+                </section>
+      </article>
+    </main>
+    <!--main-->
+
+    <!-- Required -->
+    <script src="static/js/webslides.js"></script>
+
+    <!-- Autoslide 5 seconds. If you don't want autoslide, remove: {autoslide: 5000} -->
+    <script>
+     window.ws = new WebSlides();
+    </script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- OPTIONAL - svg-icons.js (fontastic.me - Font Awesome as svg icons) -->
+    <script defer src="static/js/svg-icons.js"></script>
+
+  </body>
+</html>
